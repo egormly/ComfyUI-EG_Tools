@@ -12,9 +12,11 @@ Currently included:
 
 Smart switching - Multiple type switches allowing one or more data connections with selectable or default output.
 
-Image information and preperation (for Qwen Edit etc) - Basic information of an image and preperation for proper pixels for Qwen Edit.
+Image information and preparation (for Qwen Edit etc) - Basic information of an image and preparation for proper pixels for Qwen Edit.
 
 Path Helpers -  Simple path setting, removing repetitive, error-prone wiring from complex workflows (like multi-step image and video pipelines) by centralizing things such as project paths and prefixes into simple, reusable nodes. This is particularly useful for hardcoding path in repetitive workflows.
+
+Get and Set Value nodes - Other providers have these, but this one offers a bit more, auto title set to the Key you deciee on and the information of what is being passed visually, so you can verify it.
 
 ### Example Workflow: Universal txt2img (SD1.5 ↔ any other model)
 
@@ -101,6 +103,89 @@ Each node accepts several inputs of the given type (`input_1` … `input_N`) and
 These switches are designed to be dropped into existing graphs with minimal friction, so you can experiment with alternate branches, models, and values without constantly rewiring your workflow.
 
 
+### SetValue & GetValue (virtual Set/Get teleports)
+
+A pair of nodes that act like
+named “teleports” inside your graph. They help de-spaghetti large
+workflows without adding any backend complexity.
+
+- **Category:** `EG Tools`
+- **Nodes:**
+  - `SetValue`
+  - `GetValue`
+
+These nodes are implemented as virtual (frontend) nodes – they do **not**
+change the data sent to the backend and add no extra compute. They
+only reroute connections in the UI.
+
+### SetValue
+
+`SetValue` lets you “name” any value and pass it on:
+
+- **Widget – `Key`**  
+  A string name (e.g. `main_model`, `ref_image`, `wan_latent`).
+- **Widget – `Info` (read-only)**  
+  Automatically filled with a short summary like  
+  `MODEL from CheckpointLoader (flux1.1-dev.safetensors)` or  
+  `IMAGE from LoadImage (my_picture.png)` when something is connected.
+- **Input – `in`**  
+  Generic input; automatically adopts the type of whatever you connect
+  (MODEL, IMAGE, LATENT, CONDITIONING, etc.).
+- **Output – `out`**  
+  Same type as the input. You can wire this forward like a normal
+  passthrough.
+
+**Quality-of-life details:**
+
+- When you set the `Key`, the node title automatically updates to  
+  `Set <Key>` (e.g. `Set main_model`).  
+  When the node is collapsed, you can still see what it is at a glance.
+- The `Info` field lets you inspect what is flowing through the slot
+  without needing a separate “show” node.
+
+### GetValue
+
+`GetValue` retrieves the value from any `SetValue` node with a matching
+key and forwards its connection, acting like a named teleporter.
+
+- **Widget – `Key` (combo)**  
+  Dropdown listing all keys from existing `SetValue` nodes in the
+  current graph.
+- **Widget – `Info` (read-only)**  
+  Mirrors the `Info` text from the matching `SetValue`, so you can see
+  exactly what you’re pulling.
+- **Output – `out`**  
+  Type automatically matches the type of the connected `SetValue`
+  input.
+
+Internally, `GetValue` does **not** store a separate copy of the data.
+Instead, it virtually forwards the same upstream connection feeding the
+corresponding `SetValue`. From the backend’s point of view, it’s as if
+you wired directly from the original source node.
+
+### Why use SetValue / GetValue?
+
+- **De-spaghetti large graphs**  
+  Instead of dragging a MODEL or LATENT wire across the entire canvas,
+  you can:
+
+  1. Connect it once into `SetValue (Key = "main_model")`.
+  2. Use `GetValue (Key = "main_model")` wherever you need it.
+
+- **Readable even when collapsed**  
+  Auto-titling (`Set main_model`, `Get main_model`) plus the `Info`
+  widget makes it obvious what each pair is doing.
+
+- **Type-agnostic**  
+  Works with models, images, latents, conditioning, etc., without
+  separate typed Set/Get nodes.
+
+These nodes are especially helpful in my complex video / multi-stage and grouped
+workflows where the same resources (models, reference images, latents)
+need to be reused in multiple places without turning the canvas into a
+pile of crossing wires. I have used other nodes available but find the auto title and visual indication of the data being passed very useful.
+
+
 ### Image Utilities
 **Category:** `EG Tools/Image`
 
@@ -147,6 +232,11 @@ This collection of nodes (`EG Tools/Paths`) helps you build consistent and reusa
 A look at the `EG Tools/Image` node's interface. You can see the inputs, outputs, and the parameters that control its two modes: simple dimension reporting and advanced image preparation for vision models.
 
 ![Image Info Node Interface](/images/qwen_info.png)
+
+### Get & Set Tools
+This set passes data without wires.  They also autoset the title based on your set "Key" and show the data being passed from and to each other.
+
+![Image Info Node Interface](/images/getsetvalue.png)
 
 
 ### Smart Switches in Action
