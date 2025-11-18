@@ -30,7 +30,7 @@ except ImportError:
 SWITCH_TYPES = {
     "INT": {
         "return_name": "int",
-        "default": None,
+        "default": 0,
         "description": "Switch for integer values",
     },
     "FLOAT": {
