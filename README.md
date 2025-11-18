@@ -156,8 +156,11 @@ For your convenience, EG_Tools provides a `Smart Switch` for every major data ty
 
 ![Smart Switch Node Collection](/images/smart_switches2.png)
 
----
 
+### Workflow Example
+
+![Smart Switch Node Collection](/images/workflow_example.png)
+---
 ## Installation
 
 From your ComfyUI `custom_nodes` directory:
