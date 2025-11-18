@@ -4,7 +4,10 @@ import os
 # ------------------------------------------------------------------------------
 # 1. IMPORT WRAPPERS
 # ------------------------------------------------------------------------------
-
+from .eg_save_image import (
+    NODE_CLASS_MAPPINGS as SAVE_CLASS,
+    NODE_DISPLAY_NAME_MAPPINGS as SAVE_DISPLAY,
+)
 from .eg_image_info import (
     NODE_CLASS_MAPPINGS as INFO_CLASS,
     NODE_DISPLAY_NAME_MAPPINGS as INFO_DISPLAY,
@@ -20,17 +23,17 @@ from .smart_switches import (
 
 
 NODE_CLASS_MAPPINGS = {
+    **SAVE_CLASS,
     **INFO_CLASS,
     **PATHS_CLASS,
     **SWITCHES_CLASS,
-    # **GATE_CLASS,  # Uncomment this if you use smart_gate
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
     **INFO_DISPLAY,
     **PATHS_DISPLAY,
     **SWITCHES_DISPLAY,
-    # **GATE_DISPLAY, # Uncomment this if you use smart_gate
+    **SAVE_DISPLAY,
 }
 
 

@@ -227,6 +227,16 @@ This collection of nodes (`EG Tools/Paths`) helps you build consistent and reusa
 
 ![Path Tools Node Collection](/images/path_tools.png)
 
+
+Save Image (Exact Path)
+Be careful with this save node, it is for exact pathing with other folder and root nodes and will overwite existing images. This is intended for specific workflow needs.
+
+The example below saves to:  ComfyUI\output\MyProjects\New_Project\Image01__00001_.png
+
+Image(prefix)01(slot)__00001(comfyui naming/image_index)
+![Save Image](/images/saveimage.png)
+
+
 ### Image Info / Qwen Prep
 
 A look at the `EG Tools/Image` node's interface. You can see the inputs, outputs, and the parameters that control its two modes: simple dimension reporting and advanced image preparation for vision models.
