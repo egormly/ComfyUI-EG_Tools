@@ -153,7 +153,36 @@ const egToolsDynamicInputs = {
             return result;
         };
 
-        // 3. Hook 'onConnectionsChange' for dynamic add/remove logic
+        // 3. Hook 'onConfigure' to restore inputs when loading a workflow
+        // This prevents dropped links if the saved node had more than 2 inputs.
+        const onConfigure = nodeType.prototype.onConfigure;
+        nodeType.prototype.onConfigure = function (w) {
+            onConfigure?.apply(this, arguments);
+            try {
+                // w.inputs contains the inputs saved in the JSON workflow
+                if (w?.inputs) {
+                    let maxSavedIndex = 0;
+                    for (const input of w.inputs) {
+                        if (input.name?.startsWith("input_")) {
+                            const parts = input.name.split("_");
+                            if (parts.length >= 2) {
+                                const idx = parseInt(parts[1], 10);
+                                if (!isNaN(idx) && idx > maxSavedIndex) {
+                                    maxSavedIndex = idx;
+                                }
+                            }
+                        }
+                    }
+                    // Restore the number of inputs that were saved
+                    const targetInputs = Math.max(MIN_VISIBLE, Math.min(maxSavedIndex, MAX_INPUTS));
+                    addMissingInputs(this, targetInputs, baseType);
+                }
+            } catch (error) {
+                console.error(`[EG_Tools] Error in onConfigure:`, error);
+            }
+        };
+
+        // 4. Hook 'onConnectionsChange' for dynamic add/remove logic
         const onConnectionsChange = nodeType.prototype.onConnectionsChange;
         nodeType.prototype.onConnectionsChange = function (
             type, index, connected, link_info

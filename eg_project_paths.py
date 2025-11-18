@@ -285,6 +285,10 @@ class EG_GetDateTime:
             "required": {"format_string": ("STRING", {"default": "%Y-%m-%d_%H%M%S"})}
         }
 
+    @classmethod
+    def IS_CHANGED(s, **kwargs):
+        return float("nan")
+
     RETURN_TYPES = ("STRING",)
     RETURN_NAMES = ("datetime_string",)
     FUNCTION = "get"
@@ -298,6 +302,10 @@ class EG_PathExists:
     @classmethod
     def INPUT_TYPES(cls):
         return {"required": {"path": ("STRING", {})}}
+
+    @classmethod
+    def IS_CHANGED(s, **kwargs):
+        return float("nan")
 
     RETURN_TYPES = ("BOOLEAN", "BOOLEAN")
     RETURN_NAMES = ("exists", "does_not_exist")
@@ -320,6 +328,10 @@ class EG_ListFiles:
                 "sort_order": (["ascending", "descending"],),
             }
         }
+
+    @classmethod
+    def IS_CHANGED(s, **kwargs):
+        return float("nan")
 
     RETURN_TYPES = ("STRING",)
     RETURN_NAMES = ("file_list",)
