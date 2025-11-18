@@ -6,15 +6,15 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 Quality-of-life utility nodes for ComfyUI.
 
-The goal of this pack is to provide basic utility tools. This pack may grow over time as I see the need for basic nodes ComfUI does not provide. This pack does not rewuire complex installation nor external packages. It is drop and go.
+The goal of this pack is to provide basic utility tools. This pack may grow over time as I see the need for basic nodes ComfUI does not provide (or are in bloated node packs). This pack does not require complex installation nor external packages. It is drop and go.
 
 Currently included:
 
 Smart switching - Multiple type switches allowing one or more data connections with selectable or default output.
 
-Image information and preperation (for Qwen Edit etc) - Bsic information of an image and preperation for proper pixels for Qwen Edit.
+Image information and preperation (for Qwen Edit etc) - Basic information of an image and preperation for proper pixels for Qwen Edit.
 
-Path Helpers -  Simple path settiing, removing repetitive, error-prone wiring from complex workflows (like multi-step image and video pipelines) by centralizing things such as project paths and prefixes into simple, reusable nodes. This is particularly useful for hardcoding path in repetitive workflows.
+Path Helpers -  Simple path setting, removing repetitive, error-prone wiring from complex workflows (like multi-step image and video pipelines) by centralizing things such as project paths and prefixes into simple, reusable nodes. This is particularly useful for hardcoding path in repetitive workflows.
 
 ---
 
