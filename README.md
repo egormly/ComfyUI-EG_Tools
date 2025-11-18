@@ -165,3 +165,16 @@ From your ComfyUI `custom_nodes` directory:
 ```bash
 cd ComfyUI/custom_nodes
 git clone https://github.com/egormly/ComfyUI-EG_Tools.git
+
+```
+
+### Updating
+If you installed via Git (recommended):
+Navigate to `ComfyUI/custom_nodes/ComfyUI-EG_Tools` in your terminal/file manager and run:
+
+```bash
+git pull
+```
+Restart ComfyUI completely (or click "Refresh" in the Manager).
+
+That’s it — no need to re-download anything.
