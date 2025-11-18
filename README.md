@@ -46,6 +46,8 @@ These nodes are designed to make file naming and project structuring consistent 
   - Example: `project_root="MyProject/Project_1/"`, `slot_index=1`, `name_prefix="Image"`, `image_index=1`, `extension=".png"`
   - → `MyProject/Project_1/Image01__00001_.png`
 
+
+
 ### Smart Switches
 **Category:** `EG Tools/Switches`
 
@@ -187,7 +189,18 @@ pile of crossing wires. I have used other nodes available but find the auto titl
 
 
 ### Image Utilities
+
 **Category:** `EG Tools/Image`
+
+- **Save Image (Exact Path)**
+    *   Unlike the standard ComfyUI save node, this respects your filename inputs 100%.
+    *   Exact Filename Control: No forced counters (`_00001`) or double extensions (`.png.png`). If you input `MyImage.png`, it saves `MyImage.png`.
+    *   Absolute Path Support: Save directly to external drives or network paths (e.g., `D:/Art/ProjectA/image.png`). Relative paths automatically default to the standard `output/` folder.
+    *   Universal Preview: Solves the "blind save" issue. Even if you save to an external drive, this node generates a temporary preview so you can still see your results in ComfyUI.
+    *   Auto-Format Detection: Simply change your filename extension to change the format.
+    *   `.png` = Lossless + Metadata (Workflow embedding)
+    *   `.jpg` / `.webp` = Optimized compression (with Quality slider)
+    *  #### Careful:  This save node WILL overwrite existing files.
 
 - **Image Info / Qwen Prep**
   A dual-purpose utility node that can either output an image's dimensions or prepare it for use with vision models like Qwen-VL.
@@ -227,9 +240,13 @@ This collection of nodes (`EG Tools/Paths`) helps you build consistent and reusa
 
 ![Path Tools Node Collection](/images/path_tools.png)
 
+### Save Image (Exact Path )
 
-Save Image (Exact Path)
-Be careful with this save node, it is for exact pathing with other folder and root nodes and will overwite existing images. This is intended for specific workflow needs.
+Be careful with this save node, it is for exact pathing and for use with other folder and root nodes and will overwrite existing images. This is intended for specific workflow needs, not multiple generations through a basic save image node.
+
+This example saves to ComfyUI\output\MyImages\Image.png
+
+![Save Image](/images/saveimage2.png)
 
 The example below saves to:  ComfyUI\output\MyProjects\New_Project\Image01__00001_.png
 
