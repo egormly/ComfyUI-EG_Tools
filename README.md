@@ -4,7 +4,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![ComfyUI](https://img.shields.io/badge/ComfyUI-Custom%20Node-blue)](https://github.com/comfyanonymous/ComfyUI)
 
-Quality-of-life utility nodes for ComfyUI.
+### Quality-of-life utility nodes for ComfyUI.
 
 The goal of this pack is to provide basic utility tools. This pack may grow over time as I see the need for basic nodes ComfUI does not provide (or are in bloated node packs). This pack does not require complex installation nor external packages. It is drop and go.
 
@@ -16,8 +16,13 @@ Image information and preperation (for Qwen Edit etc) - Basic information of an 
 
 Path Helpers -  Simple path setting, removing repetitive, error-prone wiring from complex workflows (like multi-step image and video pipelines) by centralizing things such as project paths and prefixes into simple, reusable nodes. This is particularly useful for hardcoding path in repetitive workflows.
 
----
+### Example Workflow: Universal txt2img (SD1.5 ↔ any other model)
 
+Download this file into ComfyUI → [eg_tools_example.json](workflows/eg_tools_example.json) Or check out the workflows folder
+
+Works with only built-in nodes + EG_Tools. Try disconnecting/reconnecting the second checkpoint to see the smart switches in action! Or try the force index! You may have to select your local models - this uses base SD 1.5 and a (once) popular 1.5 model as example.
+
+---
 ## Features
 
 ### Path Helpers

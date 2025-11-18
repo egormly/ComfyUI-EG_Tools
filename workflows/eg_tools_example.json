@@ -1,0 +1,209 @@
+{
+  "1": {
+    "inputs": {
+      "ckpt_name": "v1-5-pruned-emaonly.ckpt"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Load Checkpoint"
+    }
+  },
+  "2": {
+    "inputs": {
+      "ckpt_name": "realisticVisionV51_v51VAE.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Load Checkpoint"
+    }
+  },
+  "4": {
+    "inputs": {
+      "text": "beautiful landscape, mountains, sunset, highly detailed, 8k",
+      "clip": [
+        "1",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "5": {
+    "inputs": {
+      "text": "cyberpunk city at night, neon lights, rain, realistic, extremely detailed",
+      "clip": [
+        "2",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "7": {
+    "inputs": {
+      "text": "blurry, low quality, text, watermark",
+      "clip": [
+        "1",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "9": {
+    "inputs": {
+      "width": 1024,
+      "height": 1024,
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "Empty Latent Image"
+    }
+  },
+  "11": {
+    "inputs": {
+      "samples": [
+        "44",
+        0
+      ],
+      "vae": [
+        "40",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "15": {
+    "inputs": {
+      "filename_prefix": [
+        "43",
+        0
+      ],
+      "images": [
+        "11",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
+  },
+  "39": {
+    "inputs": {
+      "force_input_index": 0,
+      "input_1": [
+        "1",
+        0
+      ],
+      "input_2": [
+        "2",
+        0
+      ]
+    },
+    "class_type": "EG_SmartSwitch_MODEL",
+    "_meta": {
+      "title": "EG Smart Switch (MODEL)"
+    }
+  },
+  "40": {
+    "inputs": {
+      "force_input_index": 0,
+      "input_1": [
+        "1",
+        2
+      ],
+      "input_2": [
+        "2",
+        2
+      ]
+    },
+    "class_type": "EG_SmartSwitch_VAE",
+    "_meta": {
+      "title": "EG Smart Switch (VAE)"
+    }
+  },
+  "41": {
+    "inputs": {
+      "force_input_index": 0,
+      "input_1": [
+        "4",
+        0
+      ],
+      "input_2": [
+        "5",
+        0
+      ]
+    },
+    "class_type": "EG_SmartSwitch_CONDITIONING",
+    "_meta": {
+      "title": "EG Smart Switch (CONDITIONING)"
+    }
+  },
+  "42": {
+    "inputs": {
+      "base_folder": "MyProjects",
+      "project_name": "New_Project"
+    },
+    "class_type": "EG_ProjectRoot",
+    "_meta": {
+      "title": "Project: Set Root Folder"
+    }
+  },
+  "43": {
+    "inputs": {
+      "project_root": [
+        "42",
+        0
+      ],
+      "slot_index": 1,
+      "name_prefix": "Image",
+      "image_index": 1,
+      "extension": ".png"
+    },
+    "class_type": "EG_PathIndexFilename",
+    "_meta": {
+      "title": "Project: Full Filename (Slot + Counter)"
+    }
+  },
+  "44": {
+    "inputs": {
+      "seed": 994234997443513,
+      "steps": 20,
+      "cfg": 8,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 1,
+      "model": [
+        "39",
+        0
+      ],
+      "positive": [
+        "41",
+        0
+      ],
+      "negative": [
+        "7",
+        0
+      ],
+      "latent_image": [
+        "9",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  }
+}
