@@ -20,13 +20,27 @@ from .smart_switches import (
     NODE_CLASS_MAPPINGS as SWITCHES_CLASS,
     NODE_DISPLAY_NAME_MAPPINGS as SWITCHES_DISPLAY,
 )
+from .eg_checkpoint import (
+    NODE_CLASS_MAPPINGS as CHECK_CLASS,
+    NODE_DISPLAY_NAME_MAPPINGS as CHECK_DISPLAY,
+)
 
+from .visual_image_loader import (
+    NODE_CLASS_MAPPINGS as LOADER_CLASS,
+    NODE_DISPLAY_NAME_MAPPINGS as LOADER_DISPLAY,
+)
+
+# ------------------------------------------------------------------------------
+# 2. MAPPINGS
+# ------------------------------------------------------------------------------
 
 NODE_CLASS_MAPPINGS = {
     **SAVE_CLASS,
     **INFO_CLASS,
     **PATHS_CLASS,
     **SWITCHES_CLASS,
+    **CHECK_CLASS,
+    **LOADER_CLASS,
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
@@ -34,6 +48,8 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     **PATHS_DISPLAY,
     **SWITCHES_DISPLAY,
     **SAVE_DISPLAY,
+    **CHECK_DISPLAY,
+    **LOADER_DISPLAY,
 }
 
 
@@ -41,7 +57,6 @@ NODE_DISPLAY_NAME_MAPPINGS = {
 # 3. CONFIGURATION
 # ------------------------------------------------------------------------------
 
-# Tell ComfyUI to serve the "web" folder (for your custom Javascript)
 WEB_DIRECTORY = "web"
 
 # This is the list of variables that ComfyUI will import from this file

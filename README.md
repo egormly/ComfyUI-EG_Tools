@@ -8,15 +8,17 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 The goal of this pack is to provide basic utility tools. This pack may grow over time as I see the need for basic nodes ComfUI does not provide (or are in bloated node packs). This pack does not require complex installation nor external packages. It is drop and go.
 
-Currently included:
+Currently included: *(scroll down to see screenshots of the nodes in this pack)*
 
-Smart switching - Multiple type switches allowing one or more data connections with selectable or default output.
+**Smart switching** - Multiple type switches allowing one or more data connections with selectable or default output.
 
-Image information and preparation (for Qwen Edit etc) - Basic information of an image and preparation for proper pixels for Qwen Edit.
+**Image information and preparation** (for Qwen Edit etc) - Basic information of an image and preparation for proper pixels for Qwen Edit. 
 
-Path Helpers -  Simple path setting, removing repetitive, error-prone wiring from complex workflows (like multi-step image and video pipelines) by centralizing things such as project paths and prefixes into simple, reusable nodes. This is particularly useful for hardcoding path in repetitive workflows.
+**Image Save and Image Browse nodes** (Addvanced and special use case nodes. See below for more information)
 
-Get and Set Value nodes - Other providers have these, but this one offers a bit more, auto title set to the Key you deciee on and the information of what is being passed visually, so you can verify it.
+**Path Helpers** -  Simple path setting, removing repetitive, error-prone wiring from complex workflows (like multi-step image and video pipelines) by centralizing things such as project paths and prefixes into simple, reusable nodes. This is particularly useful for hardcoding path in repetitive workflows.
+
+**Get and Set Value nodes** - Other providers have these, but this one offers a bit more, auto title set to the Key you decide on and the information of what is being passed visually, so you can verify it.
 
 ### Example Workflow: Universal txt2img (SD1.5 ↔ any other model)
 
@@ -202,6 +204,12 @@ pile of crossing wires. I have used other nodes available but find the auto titl
     *   `.jpg` / `.webp` = Optimized compression (with Quality slider)
     *  #### Careful:  This save node WILL overwrite existing files.
 
+
+- **Visual Image Loader**
+
+   *   This node allows you to set a folder and then select images based on thumbnails. Good for projects using a single reference folder with m,ultiple images.  Stays persistantly open untiol you close it. The image selected is automatically populated with a single click.
+
+
 - **Image Info / Qwen Prep**
   A dual-purpose utility node that can either output an image's dimensions or prepare it for use with vision models like Qwen-VL.
 
@@ -239,7 +247,7 @@ Here is a visual look at the nodes included in EG_Tools.
 This collection of nodes (`EG Tools/Paths`) helps you build consistent and reusable file paths for your projects, eliminating manual string construction and reducing errors.
 
 ![Path Tools Node Collection](/images/path_tools.png)
-
+---
 ### Save Image (Exact Path )
 
 Be careful with this save node, it is for exact pathing and for use with other folder and root nodes and will overwrite existing images. This is intended for specific workflow needs, not multiple generations through a basic save image node.
@@ -252,33 +260,39 @@ The example below saves to:  ComfyUI\output\MyProjects\New_Project\Image01__0000
 
 Image(prefix)01(slot)__00001(comfyui naming/image_index)
 ![Save Image](/images/saveimage.png)
+---
+### Visual Image Loader
 
+This node allows you to set a folder and then select images based on thumbnails. Good for projects using a single reference folder with m,ultiple images.  Stays persistantly open untiol you close it. The image selected is automatically populated with a single click.
 
+![Save Image](/images/visual_image_loader.png)
+
+---
 ### Image Info / Qwen Prep
 
 A look at the `EG Tools/Image` node's interface. You can see the inputs, outputs, and the parameters that control its two modes: simple dimension reporting and advanced image preparation for vision models.
 
 ![Image Info Node Interface](/images/qwen_info.png)
-
+---
 ### Get & Set Tools
 This set passes data without wires.  They also autoset the title based on your set "Key" and show the data being passed from and to each other.
 
 ![Image Info Node Interface](/images/getsetvalue.png)
 
-
+---
 ### Smart Switches in Action
 
 The `Smart Switch` nodes allow you to dynamically select from multiple inputs. This image shows an `INT` switch where `input_3` is currently the active output, demonstrating how you can route different values or data types through a single node.
 
 ![Smart Switch Selection](/images/smart_switches.png)
-
+---
 ### Samples of the Smart Switch Family
 
 For your convenience, EG_Tools provides a `Smart Switch` for every major data type in ComfyUI. This allows you to route images, models, prompts, and more without having to rewire your entire workflow.
 
 ![Smart Switch Node Collection](/images/smart_switches2.png)
 
-
+---
 ### Workflow Example
 
 ![Smart Switch Node Collection](/images/workflow_example.png)
