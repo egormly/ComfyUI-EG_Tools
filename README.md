@@ -27,7 +27,7 @@ Download this file into ComfyUI → [eg_tools_example.json](workflows/eg_tools_e
 Works with only built-in nodes + EG_Tools. Try disconnecting/reconnecting the second checkpoint to see the smart switches in action! Or try the force index! You may have to select your local models - this uses base SD 1.5 and a (once) popular 1.5 model as example.
 
 ---
-## Features
+## Nodes included in this pack:
 
 ### Path Helpers
 **Category:** `EG Tools/Paths`
